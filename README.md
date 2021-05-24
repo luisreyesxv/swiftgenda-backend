@@ -23,3 +23,11 @@ Things you may want to cover:
 
 * ...
 # swiftgenda-backend
+
+## libraries used
+* [devise_token_auth](https://github.com/lynndylanhurley/devise_token_auth)
+
+
+## helpful reads
+* https://www.cyrusstoller.com/2019/09/17/supporting-multiple-omniauth-providers-with-devise
+* https://gist.github.com/SumitGA/97d77c39be5c370c906972e14e809cdd
