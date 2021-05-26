@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Appointment.destroy_all
 Campaign.destroy_all
-OAuth.destroy_all
+
 User.destroy_all
 
 
@@ -18,5 +18,4 @@ campaign1 = Campaign.create(owner: user1, begin_time: Time.now, end_time: Time.n
 puts "campaign created"
 apointment1 = Appointment.create(campaign: campaign1, attendee_email: "fakeInterviewer@email.com", attendee_name: "Fake Interviewer 1", status: "pending")
 puts "appointment created"
-oauth1 = OAuth.create(user: user1, uid: "random Google code they give us", provider: "google_oauth2")
 

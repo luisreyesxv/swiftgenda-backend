@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   # devise_for :users
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  # mount_devise_token_auth_for 'User', at: '/api/v1/auth', skip: [:omniauth_callbacks]
+  #   mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+
   namespace :api do
     namespace :v1 do
+
+      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+      post '/auth/request', to: 'authorization#get_authorization'
+
       
       resources :users
       resources :appointments
@@ -14,7 +20,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'auth/request', to: 'authorization#get_authorization'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

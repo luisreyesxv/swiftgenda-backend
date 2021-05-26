@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_24_022243) do
+ActiveRecord::Schema.define(version: 2021_05_26_033152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,15 +50,6 @@ ActiveRecord::Schema.define(version: 2021_05_24_022243) do
     t.index ["owner_id"], name: "index_campaigns_on_owner_id"
   end
 
-  create_table "o_auths", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "uid"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "provider", null: false
-    t.index ["user_id"], name: "index_o_auths_on_user_id"
-  end
-
   create_table "time_blocks", force: :cascade do |t|
     t.uuid "appointment_id", null: false
     t.datetime "begin_time"
@@ -78,13 +69,15 @@ ActiveRecord::Schema.define(version: 2021_05_24_022243) do
     t.string "company"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   add_foreign_key "appointments", "campaigns"
   add_foreign_key "available_days", "campaigns"
   add_foreign_key "campaigns", "users", column: "owner_id"
-  add_foreign_key "o_auths", "users"
   add_foreign_key "time_blocks", "appointments"
 end
